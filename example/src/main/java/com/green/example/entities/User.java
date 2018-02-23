@@ -17,7 +17,7 @@ public class User {
 
 	@Column(name = "full_name", nullable = false)
 	private String fullName;
-
+	
 	public String getUsername() {
 		return username;
 	}
