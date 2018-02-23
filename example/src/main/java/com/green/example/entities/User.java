@@ -1,29 +1,35 @@
 package com.green.example.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
 public class User {
 	@Id
 	@Column(name = "user_name", unique = true, nullable = false)
-	private String username;
+	private String userName;
+
+	@Column(name = "email", nullable = false)
+	private String email;
 
 	@Column(name = "password", nullable = false)
 	private String password;
 
 	@Column(name = "full_name", nullable = false)
 	private String fullName;
-	
-	public String getUsername() {
-		return username;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_name") },
+			inverseJoinColumns = { @JoinColumn(name = "role_id") })
+	private Set<Role> roles;
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -42,4 +48,19 @@ public class User {
 		this.fullName = fullName;
 	}
 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

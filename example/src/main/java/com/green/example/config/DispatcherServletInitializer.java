@@ -9,7 +9,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { SpringWebConfig.class, DatasourceConfig.class };
+		return new Class<?>[] { SpringWebConfig.class, DatasourceConfig.class, SecurityConfig.class };
 	}
 
 	@Override
