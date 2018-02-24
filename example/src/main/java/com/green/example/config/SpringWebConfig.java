@@ -1,10 +1,12 @@
 package com.green.example.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -12,10 +14,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.green.example.util.UserRoleConverter;
+
 @EnableWebMvc // mvc:annotation-driven
 @Configuration
 @ComponentScan({ "com.green.example" })
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
+	
+	@Autowired
+    private UserRoleConverter userRoleConverter;
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -45,5 +53,10 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	public void configurePathMatch(PathMatchConfigurer matcher) {
 		matcher.setUseRegisteredSuffixPatternMatch(true);
 	}
+	
+	@Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(userRoleConverter);
+    }
 
 }

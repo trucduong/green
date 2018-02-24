@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="generic-container">
-	<jsp:include page="./templates/header.jsp"></jsp:include>
+	<jsp:include page="../templates/header.jsp"></jsp:include>
 
 	<div class="alert alert-success lead">
 		${success}

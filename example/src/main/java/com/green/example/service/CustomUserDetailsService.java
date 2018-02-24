@@ -5,6 +5,7 @@ import com.green.example.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +20,7 @@ import java.util.Set;
 
 
 @Service("customUserDetailsService")
+@Qualifier("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
     static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);

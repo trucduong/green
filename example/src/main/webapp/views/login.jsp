@@ -32,7 +32,7 @@
                     </c:if>
                     <div class="input-group input-sm">
                         <label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
-                        <input type="text" class="form-control" id="username" name="ssoId" placeholder="Enter Username"
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter Username"
                                required>
                     </div>
                     <div class="input-group input-sm">
@@ -48,8 +48,7 @@
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
                     <div class="form-actions">
-                        <input type="submit"
-                               class="btn btn-block btn-primary btn-default" value="Log in">
+                        <input type="submit" class="btn btn-block btn-primary btn-default" value="Log in">
                     </div>
                 </form>
             </div>

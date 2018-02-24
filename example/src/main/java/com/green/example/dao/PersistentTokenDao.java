@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
+@Transactional
 @Repository("persistentTokenRepository")
 public class PersistentTokenDao extends AbstractDao<String, PersistentLogin>
         implements PersistentTokenRepository {

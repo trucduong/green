@@ -32,7 +32,8 @@ public abstract class AbstractDao<PK extends Serializable, T> {
         return (T) getSession().get(persistentClass, key);
     }
 
-    public List<T> getAll() {
+    @SuppressWarnings("unchecked")
+	public List<T> getAll() {
         Session session = this.sessionFactory.getCurrentSession();
         Query query = session.createQuery("from " + persistentClass.getName());
         return query.list();

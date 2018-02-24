@@ -1,6 +1,8 @@
 package com.green.example.service;
 
+import com.green.example.dao.RoleDao;
 import com.green.example.dao.UserDao;
+import com.green.example.entities.Role;
 import com.green.example.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -8,10 +10,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+@Transactional
 @Service
 public class UserService {
     @Autowired
     private UserDao dao;
+    
+    @Autowired
+    private RoleDao roleDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -51,6 +59,14 @@ public class UserService {
         if (entity != null) {
             dao.delete(entity);
         }
+    }
+    
+    public List<Role> findAllRoles() {
+        return roleDao.getAll();
+    }
+    
+    public Role getRoleById(Integer roleId) {
+    	return roleDao.getByKey(roleId);
     }
 
 }

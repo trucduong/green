@@ -6,23 +6,18 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <link rel="stylesheet"
-          href="<c:url value="/resources/css/bootstrap.min.css" />">
-
-    <link rel="stylesheet"
-          href="<c:url value="/resources/css/app.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/css/app.css" />">
 </head>
 <body>
+	<c:url var="userUrl" value="/user"/>
+	
     <jsp:include page="./templates/header.jsp"></jsp:include>
 
-Hello word!
+	<h1>Home page</h1>
+	<a href="${userUrl}">Show User list</a>
 </body>
 
-<script type="text/javascript"
-        src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-
-<script type="text/javascript"
-        src="<c:url value="/resources/js/app.js" />"></script>
-
+<script type="text/javascript" src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/js/app.js" />"></script>
 </html>
