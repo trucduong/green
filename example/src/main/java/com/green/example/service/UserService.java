@@ -25,7 +25,14 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User findByUserName(String userName) {
+        return findByUserName(userName, true);
+    }
+    
+    public User findByUserName(String userName, boolean withRoles) {
         User user = dao.getByKey(userName);
+        if (withRoles) {
+        	user.getRoles().size(); // load user roles
+        }
         return user;
     }
 

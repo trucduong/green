@@ -80,8 +80,10 @@
 			<div class="form-group col-md-12">
 				<label class="col-md-3 control-lable" for="roles">Roles</label>
 				<div class="col-md-7">
-					<form:select path="roles" items="${roles}" multiple="true" itemValue="id" itemLabel="name" class="form-control input-sm" />
-					<div class="has-error">
+						<form:select path="roles" class="form-control input-sm">
+							<form:options items="${roles}" itemLabel="name" itemValue="id" />
+						</form:select>
+						<div class="has-error">
 						<form:errors path="roles" class="help-inline"/>
 					</div>
 				</div>
