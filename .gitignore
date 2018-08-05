@@ -1,2 +1,6 @@
 *.iml
 example/.idea
+.classpath
+.project
+jsp-servlet/.settings
+jsp-servlet/target
