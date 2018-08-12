@@ -59,9 +59,7 @@
 		<tr>
 			<td colspan="6" >Empty!</td>
 		</tr>
-		<%
-			}
-		%>
+		<% } %>
 	</table>
 
 	<script src="resources/js/app.js"></script>

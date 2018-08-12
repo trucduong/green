@@ -36,13 +36,17 @@ public class ContactService {
 	public Contact createContact(Contact contact, List<String> emails, List<String> phones) {
 		// Create contact
 		Contact result = contactDao.create(contact);
-		long contactId = result.getId();
-		
-		// create Email contact list
-		createEmailContacts(contactId, emails);
-		
-		// Create Phone contact list
-		createPhoneContacts(contactId, phones);
+		if (result != null) {
+			long contactId = result.getId();
+			
+			// create Email contact list
+			createEmailContacts(contactId, emails);
+			
+			// Create Phone contact list
+			createPhoneContacts(contactId, phones);
+			
+			return contact;
+		}
 		
 		return null;
 	}

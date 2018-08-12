@@ -1,12 +1,20 @@
 package com.green.example.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+
+import com.green.example.controller.ContactDetailController;
 import com.green.example.entity.Contact;
 
 import utils.Gender;
 
 public class ContactDetailModel {
+	private Logger logger = Logger.getLogger(ContactDetailController.class);
 	
 	private boolean errContactNotFound = false;
 	
@@ -20,6 +28,44 @@ public class ContactDetailModel {
 	private Date birthDate;
 	private String address;
 	private String note;
+	
+	public ContactDetailModel() {
+	}
+	
+	public ContactDetailModel(HttpServletRequest req) {
+		String param;
+		
+		// id
+		param = req.getParameter("id");
+		if (param != null) {
+			this.setId(Long.parseLong(param));
+		}
+		
+		// name
+		this.setName(req.getParameter("name"));
+		
+		// gender
+		param = req.getParameter("gender");
+		if (param != null) {
+			this.setGender(Gender.valueOf(param));
+		}
+		
+		// birth date
+		param = req.getParameter("birthDate");
+		if (param != null) {
+			try {
+				this.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse(param));
+			} catch (ParseException e) {
+				logger.error("Fail to parse date: " + param);
+			}
+		}
+		
+		// address 
+		this.setAddress(req.getParameter("address"));
+		
+		// note 
+		this.setNote(req.getParameter("note"));
+	}
 	
 	public void setContact(Contact contact) {
 		this.id = contact.getId();
@@ -47,6 +93,11 @@ public class ContactDetailModel {
 	public boolean isUpdating() {
 		return this.id != 0;
 	}
+	
+	public boolean isGender(String genderStr) {
+		return this.gender != null && genderStr.equals(this.gender.toString());
+	}
+	
 
 	public long getId() {
 		return id;

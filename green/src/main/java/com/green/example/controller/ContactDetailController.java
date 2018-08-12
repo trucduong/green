@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import com.green.example.entity.Contact;
 import com.green.example.model.ContactDetailModel;
 import com.green.example.service.ContactService;
@@ -18,6 +19,7 @@ import utils.Constants;
 		  name = "ContactDetailController", 
 		  urlPatterns = "/contact-detail")
 public class ContactDetailController extends BaseAuthController {
+	
 	/**
 	 * 
 	 */
@@ -47,6 +49,7 @@ public class ContactDetailController extends BaseAuthController {
 				
 				// Error contact not found
 				model.setErrContactNotFound(true);
+				model.setId(contactId);
 			}
 			
 		// create mode
@@ -83,7 +86,17 @@ public class ContactDetailController extends BaseAuthController {
 	}
 	
 	private void handleCreate(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		// parse request to model
+		ContactDetailModel model = new ContactDetailModel(req);
 		
+		// get contact object form model
+		Contact contact = model.getContact();
+		
+		// call service to insert contact
+		contactService.createContact(contact);
+		
+		// back to home page
+		resp.sendRedirect(req.getContextPath() + "/home");
 	}
 	
 	private void handleUpdate(HttpServletRequest req, HttpServletResponse resp) throws IOException {
