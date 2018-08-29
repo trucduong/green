@@ -20,7 +20,11 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @Configuration
 @ComponentScan({ "com.green.example" })
-public class MyWebConfig implements WebMvcConfigurer {
+public class MvcWebConfig implements WebMvcConfigurer {
+	/**
+	 * Web MVC
+	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
@@ -35,6 +39,10 @@ public class MyWebConfig implements WebMvcConfigurer {
 		return viewResolver;
 	}
 	
+	/**
+	 * Data Source
+	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 */
 	@Bean
 	public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();

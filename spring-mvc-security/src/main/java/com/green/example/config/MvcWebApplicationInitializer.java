@@ -2,16 +2,16 @@ package com.green.example.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class MyWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class MvcWebApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;
+		return new Class[] { SecurityWebConfig.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { MyWebConfig.class };
+		return new Class<?>[] { MvcWebConfig.class };
 	}
 
 	@Override
