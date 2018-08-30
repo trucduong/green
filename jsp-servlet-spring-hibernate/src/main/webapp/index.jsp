@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%
-		response.sendRedirect("home");
+		response.sendRedirect("contact");
 	%>
 </body>
 </html>

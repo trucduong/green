@@ -11,6 +11,6 @@ public class HomeController {
 	
 	@GetMapping
 	public String index() {
-		return "redirect:/contact";
+		return "forward:/contact";
 	}
 }

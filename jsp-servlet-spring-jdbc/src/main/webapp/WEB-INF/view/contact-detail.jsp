@@ -1,4 +1,3 @@
-<%@page import="utils.Constants"%>
 <%@page import="utils.Utils"%>
 <%@page import="com.green.example.model.ContactDetailModel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="resources/css/app.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/app.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Contact Management</title>
 </head>
@@ -24,17 +23,15 @@
 	
 		<% if (model.isUpdating()) { %>
 			<div class="action">
-				<form method="post">
-					<input type="hidden" name="action" value="<%=Constants.DELETE %>"/>
+				<form action="<%=Utils.getUrl(request, "/contact/delete") %>" method="post">
 					<input type="hidden" name="contactId" value="<%=model.getId() %>"/>
 					<button type="submit" >Delete</button>
 				</form>
 			</div>
 		<% } %>
 	
-		<form action="<%=Utils.getUrl(request, "/contact-detail") %>" method="post">
+		<form method="post">
 			<input type="hidden" name="id" value="<%=model.getId() %>" />
-			<input type="hidden" name="action" value="<%=model.isUpdating() ? Constants.UPDATE : Constants.CREATE %>" />
 			
 			<table class="tbl-border">
 				<% if (model.isUpdating()) { %>
@@ -74,13 +71,13 @@
 			<div class="action">
 				<button type="submit">Submit</button>
 				<button type="button"
-					onclick="window.location.href='<%=Utils.getUrl(request, "/home")%>'">Cancel</button>
+					onclick="window.location.href='<%=Utils.getUrl(request, "/contact")%>'">Cancel</button>
 			</div>
 	
 		</form>
 		
 	<% } %>
 
-	<script src="resources/js/app.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/app.js"></script>
 </body>
 </html>

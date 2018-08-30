@@ -1,4 +1,4 @@
-package com.green.example.controller;
+package com.green.example.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,38 +16,30 @@ import com.green.example.service.ContactService;
 
 import utils.SpringUtils;
 
-@WebServlet(
-		  name = "HomeController", 
-		  urlPatterns = "/home")
-public class HomeController extends HttpServlet {
-	/**
-	 * 
-	 */
+@WebServlet(name = "ContactServlet",
+		urlPatterns = "/contact")
+public class ContactServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private ContactService contactService;
-	
-	public HomeController() {
+
+	public ContactServlet() {
 		contactService = SpringUtils.getApplicationContext().getBean(ContactService.class);
 	}
-
+	
 	@Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-      throws ServletException, IOException {
-		
-		// get input parameters
-		String name = request.getParameter("name"); // contact name
-		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// declare model
 		HomeModel model = new HomeModel();
-		
-		// get necessary data
-		List<Contact> contacts = contactService.search(name);
+
+		// get data
+		List<Contact> contacts = contactService.findAll();
 		model.setContacts(contacts);
- 
+
 		// view
-		request.setAttribute("model", model);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/home.jsp");
-        dispatcher.forward(request, response);
-    }
+		req.setAttribute("model", model);
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/view/contact-list.jsp");
+		dispatcher.forward(req, resp);
+	}
 }

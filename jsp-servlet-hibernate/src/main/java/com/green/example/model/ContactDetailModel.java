@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 
-import com.green.example.controller.ContactDetailController;
 import com.green.example.entity.Contact;
 
 import utils.Gender;
 
 public class ContactDetailModel {
-	private Logger logger = Logger.getLogger(ContactDetailController.class);
+	private Logger logger = Logger.getLogger(ContactDetailModel.class);
 	
 	private boolean errContactNotFound = false;
 	

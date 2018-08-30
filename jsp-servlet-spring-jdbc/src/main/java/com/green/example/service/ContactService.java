@@ -22,12 +22,8 @@ public class ContactService {
 	@Autowired
 	private PhoneContactDao phoneContactDao;
 
-	public List<Contact> search(String name) {
-		if (name == null || name.length() == 0) {
-			return contactDao.findAll();
-		}
-
-		return contactDao.findByName(name);
+	public List<Contact> findAll() {
+		return contactDao.findAll();
 	}
 
 	public Contact createContact(Contact contact) {
