@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.green.example.entity.Contact;
-import com.green.example.model.HomeModel;
+import com.green.example.model.ContactModel;
 import com.green.example.service.ContactService;
 
 import utils.SpringUtils;
@@ -31,7 +31,7 @@ public class ContactServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// declare model
-		HomeModel model = new HomeModel();
+		ContactModel model = new ContactModel();
 
 		// get data
 		List<Contact> contacts = contactService.findAll();

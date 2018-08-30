@@ -1,6 +1,6 @@
+<%@page import="com.green.example.model.ContactModel"%>
 <%@page import="utils.Utils"%>
 <%@page import="com.green.example.entity.Contact"%>
-<%@page import="com.green.example.model.HomeModel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -12,7 +12,7 @@
 <title>Contact Management</title>
 </head>
 <%
-	HomeModel model = (HomeModel) request.getAttribute("model");
+	ContactModel model = (ContactModel) request.getAttribute("model");
 %>
 <body>
 	<h1>Contact List</h1>

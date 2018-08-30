@@ -9,7 +9,7 @@ import com.green.example.entity.Contact;
  * Model class for Home page
  *
  */
-public class HomeModel {
+public class ContactModel {
 	private List<Contact> contacts = new ArrayList<>();
 	
 	
