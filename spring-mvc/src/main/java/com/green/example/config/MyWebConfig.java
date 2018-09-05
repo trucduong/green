@@ -23,8 +23,16 @@ import org.springframework.web.servlet.view.JstlView;
 public class MyWebConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		//localhost:8080/spring-mvc/resources/js/app.js
+		// => /webapp/resources/js/app.js
+		
+		//localhost:8080/spring-mvc/resources/img/avatar.jpg
+		// => /webapp/resources/img/avatar.jpg
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
+	
+	// https://github.com/trucduong/green
+	// spring-mvc
 	
 	@Bean
 	public InternalResourceViewResolver viewResolver() {

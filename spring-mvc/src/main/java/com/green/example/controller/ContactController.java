@@ -15,6 +15,8 @@ import com.green.example.entity.Contact;
 import com.green.example.model.ContactModel;
 import com.green.example.service.ContactService;
 
+//localhost:8080/spring-mvc/contact
+
 @Controller
 @RequestMapping("/contact")
 public class ContactController {
@@ -22,21 +24,34 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 	
+	//localhost:8080/spring-mvc/contact
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model) {
 		
 		List<Contact> contacts = contactService.search(null);
 		model.addAttribute("contacts", contacts);
 		
-		return "contact-list";
+		return "contact-list"; // WEB-INF/view/contact-list.jsp
 	}
 	
+//	@RequestMapping(method = RequestMethod.GET)
+//	public ModelAndView list() {
+//		
+//		ModelAndView model = new ModelAndView();
+//		model.setViewName("contact-list");
+//		
+//		List<Contact> contacts = contactService.search(null);
+//		model.addObject("contacts", contacts);
+//		
+//		return model; // WEB-INF/view/contact-list.jsp
+//	}
+	
+	// localhost:8080/spring-mvc/contact/create
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String create(Model model) {
 		
 		ContactModel contact = new ContactModel();
 		model.addAttribute("contact", contact);
-		model.addAttribute("mode", "create");
 		
 		return "contact-detail";
 	}
@@ -58,6 +73,7 @@ public class ContactController {
 		return "redirect:/contact";
 	}
 	
+	// http://localhost:8080/spring-mvc/contact/update?contactId=1
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(@RequestParam(name="contactId") Long contactId, Model model) {
 		
@@ -70,7 +86,6 @@ public class ContactController {
 		contactModel.fromContact(c);
 		
 		model.addAttribute("contact", contactModel);
-		model.addAttribute("mode", "update");
 		
 		return "contact-detail";
 	}

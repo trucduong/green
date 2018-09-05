@@ -13,6 +13,7 @@
 </head>
 <body>
 	<h1>Contact List</h1>
+	<h2>http://localhost:8080/spring-mvc/contact</h2>
 	<div class="action">
 		<button type="button" onclick="window.location.href='<spring:url value="/contact/create" />'">Add</button>
 		<button type="button" onclick="window.location.href='<spring:url value="/call-history" />'">Call History</button>
