@@ -10,7 +10,8 @@
 <title>Contact Management</title>
 </head>
 <body>
-	<c:url value="/login" var="loginUrl"/>
+	<h1>Login</h1>
+	<c:url value="/handleLogin" var="loginUrl"/>
 	<form action="${loginUrl}" method="post">       
 		<c:if test="${param.error != null}">        
 			<p>
@@ -24,11 +25,11 @@
 		</c:if>
 		<p>
 			<label for="username">Username</label>
-			<input type="text" id="username" name="username"/>	
+			<input type="text" name="username"/>	
 		</p>
 		<p>
 			<label for="password">Password</label>
-			<input type="password" id="password" name="password"/>	
+			<input type="password" name="password"/>	
 		</p>
 		<input type="hidden"                        
 			name="${_csrf.parameterName}"

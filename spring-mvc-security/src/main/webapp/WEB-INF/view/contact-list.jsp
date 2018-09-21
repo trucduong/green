@@ -12,6 +12,7 @@
 <title>Contact Management</title>
 </head>
 <body>
+	<div style="float:right"><a href="<c:url value="/logout" />">Logout</a></div>
 	<h1>Contact List</h1>
 	<div class="action">
 		<button type="button" onclick="window.location.href='<spring:url value="/contact/create" />'">Add</button>
