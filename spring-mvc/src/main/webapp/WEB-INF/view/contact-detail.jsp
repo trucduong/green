@@ -15,6 +15,9 @@
 <body>
 	<h1>Contact Detail</h1>
 	<form:form modelAttribute="contact" enctype="multipart/form-data" >
+		<form:hidden path="id"/>
+		<form:hidden path="avatar"/>
+		
 		<form:errors path="*" cssClass="error-box"/>
 		<div class="input-group">
 			<label>Id</label>

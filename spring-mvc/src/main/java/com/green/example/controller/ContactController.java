@@ -8,11 +8,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,7 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.green.example.entity.Contact;
 import com.green.example.model.ContactModel;
@@ -85,11 +80,7 @@ public class ContactController {
 		}
 		
 		// save contact info
-		Contact c = contactModel.toContact();
-		String fileName = saveContactAvatar(contactModel.getAvatarFile(), contactModel.getAvatar());
-		c.setAvatar(fileName);
-		
-		contactService.createContact(c);
+		contactService.create(contactModel);
 		
 		// back to contact list page
 		return "redirect:/contact";
@@ -99,7 +90,7 @@ public class ContactController {
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String update(@RequestParam(name="contactId") Long contactId, Model model) {
 		
-		Contact c = contactService.findContact(contactId);
+		Contact c = contactService.find(contactId);
 		if (c == null) {
 			return "redirect:/contact";
 		}
@@ -114,7 +105,7 @@ public class ContactController {
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String handleUpdate(@RequestParam(name="contactId") Long contactId,
-			@ModelAttribute("contact") ContactModel contact, 
+			@ModelAttribute("contact") ContactModel contactModel, 
 			BindingResult result, Model model) {
 		
 		// validate inputed contact info and convert to entity
@@ -123,7 +114,7 @@ public class ContactController {
 		}
 		
 		// save contact info
-		//.....
+		contactService.update(contactModel);
 		
 		// back to contact list page
 		return "redirect:/contact";
@@ -136,7 +127,7 @@ public class ContactController {
     public void downloadAvatar(HttpServletResponse response, @PathVariable("contactId") Long contactId) throws IOException {
      
     	// get Contact form DB
-    	Contact contact = contactService.findContact(contactId);
+    	Contact contact = contactService.find(contactId);
     	
     	if (contact == null) {
     		return; // no contact found
@@ -178,22 +169,5 @@ public class ContactController {
         FileCopyUtils.copy(inputStream, response.getOutputStream());
     }
     
-    private String saveContactAvatar(MultipartFile file, String defaultAvatar) {
-    	if (file != null) {
-			try {
-				byte[] bytes = file.getBytes();
-				String fileName = UUID.randomUUID().toString() + file.getOriginalFilename();
-	             Path path = Paths.get(Constants.UPLOAD_FOLDER  + "/" + fileName );
-	             Files.write(path, bytes);
-	             
-	             return fileName;
-	             
-			} catch (IOException e) {
-				// TODO logging
-				return defaultAvatar;
-			}
-		} else {
-			return defaultAvatar;
-		}
-    }
+    
 }

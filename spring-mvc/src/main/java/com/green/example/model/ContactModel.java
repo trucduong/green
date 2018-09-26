@@ -26,8 +26,7 @@ public class ContactModel {
 	
 	private String note;
 	
-	public Contact toContact() {
-		Contact contact = new Contact();
+	public void toContact(Contact contact) {
 		contact.setId(this.getId());
 		contact.setAddress(this.getAddress());
 		contact.setAvatar(this.getAvatar());
@@ -40,7 +39,6 @@ public class ContactModel {
 		}
 		contact.setGender(this.getGender());
 		contact.setNote(this.getNote());
-		return contact;
 	}
 	
 	public void fromContact(Contact contact) {
