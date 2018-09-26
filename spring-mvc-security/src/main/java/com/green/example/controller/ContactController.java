@@ -41,6 +41,8 @@ public class ContactController {
 		return "contact-detail";
 	}
 	
+	
+//	@Secured("hasRole(['CONTACT-MANAGER'])")
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String handleCreate(@ModelAttribute("contact") ContactModel contact, 
 			BindingResult result, Model model) {
