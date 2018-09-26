@@ -14,12 +14,16 @@
 </head>
 <body>
 	<h1>Contact Detail</h1>
-	<form:form modelAttribute="contact" >
+	<form:form modelAttribute="contact" enctype="multipart/form-data" >
 		<form:errors path="*" cssClass="error-box"/>
 		<div class="input-group">
 			<label>Id</label>
 			<form:input path="id" disabled="true"/>
 		</div>
+		<c:if test="${not empty contact.avatar}">
+			<img width="100px" alt="Avatar" src="<spring:url value='/contact/avatar/${contact.id}'/>">
+		</c:if>
+		<form:input type="file" path="avatarFile" />
 		<div class="input-group">
 			<label>Full Name</label>
 			<form:input path="name"/>

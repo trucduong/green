@@ -3,6 +3,8 @@ package com.green.example.model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.green.example.entity.Contact;
 
 import utils.Gender;
@@ -11,6 +13,8 @@ public class ContactModel {
 	private long id;
 	
 	private String avatar;
+	
+	private MultipartFile avatarFile;
 	
 	private Gender gender;
 	
@@ -36,7 +40,6 @@ public class ContactModel {
 		}
 		contact.setGender(this.getGender());
 		contact.setNote(this.getNote());
-		
 		return contact;
 	}
 	
@@ -49,6 +52,7 @@ public class ContactModel {
 		this.setGender(contact.getGender());
 		this.setName(contact.getName());
 		this.setNote(contact.getNote());
+		this.setAvatar(contact.getAvatar());
 	}
 
 	public long getId() {
@@ -105,6 +109,14 @@ public class ContactModel {
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+	
+	public MultipartFile getAvatarFile() {
+		return avatarFile;
+	}
+	
+	public void setAvatarFile(MultipartFile avatarFile) {
+		this.avatarFile = avatarFile;
 	}
 
 }
