@@ -4,3 +4,4 @@ example/.idea
 .project
 */.settings
 */target
+*/bin
