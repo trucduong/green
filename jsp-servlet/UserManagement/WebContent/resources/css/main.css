@@ -1,0 +1,20 @@
+body {
+	width: 100%;
+}
+
+table {
+	width: 100%;
+}
+
+.container {
+	width: 100%;
+}
+
+.center {
+	margin: auto;
+	width: 50%;
+}
+
+.err-msg {
+	color: red;
+}
