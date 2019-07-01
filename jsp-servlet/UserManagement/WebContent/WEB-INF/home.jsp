@@ -30,14 +30,23 @@ List<Account> accountList = (List<Account>) request.getAttribute("account_list")
 			<td><%=account.getFullName() %></td>
 			<td><%=account.getEmail() %></td>
 			<td>
-				<a href="#">Update</a>
-				<a href="#">Delete</a>
+				<form action="<%=request.getContextPath()%>/detail" method="get">
+					<input type="hidden" name="u" value="<%=account.getUsername()%>">
+					<button type="submit">Update</button>
+				</form>
+				<form action="<%=request.getContextPath()%>/detail" method="post">
+					<input type="hidden" name="username" value="<%=account.getUsername()%>">
+					<input type="hidden" name="btnAction" value="delete">
+					<button type="submit">Delete</button>
+				</form>
 			</td>
 		</tr>
 	<%
 	}
 	%>
 	</table>
-	
+	<div style="margin-top: 20px">
+		<a href="<%=request.getContextPath()%>/detail">Create new User</a>
+	</div>
 </body>
 </html>

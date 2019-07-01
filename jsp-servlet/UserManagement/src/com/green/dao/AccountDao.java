@@ -120,8 +120,8 @@ public class AccountDao {
 			Connection con = DriverManager
 					.getConnection(DBConfig.DB_URL, DBConfig.USER, DBConfig.PASS);
 			String sql = "UPDATE Account"
-						+ "SET password = ?, full_name = ?, email = ?"
-						+ "WHERE username = ?";
+						+ " SET password = ?, full_name = ?, email = ?"
+						+ " WHERE username = ?";
 			
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, account.getPassword());
@@ -150,7 +150,7 @@ public class AccountDao {
 			Connection con = DriverManager
 					.getConnection(DBConfig.DB_URL, DBConfig.USER, DBConfig.PASS);
 			String sql = "DELETE FROM Account"
-						+ "WHERE username = ?";
+						+ " WHERE username = ?";
 			
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, username);
