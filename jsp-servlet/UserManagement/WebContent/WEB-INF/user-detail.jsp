@@ -11,19 +11,9 @@
 <body>
 	<div class="container">
 		<div class="center">
-			<h1>Login</h1>
-			<form action="login" method="post">
+			<h1>User Detail</h1>
+			<form action="detail" method="post">
 			 	<table>
-			 		<%
-			 		String errorMessage = (String) request.getAttribute("error");
-			 		if (errorMessage != null) { 
-			 		%>
-			 		<tr>
-			 			<td colspan="2"><span class="err-msg"><%=errorMessage %></span></td>
-			 		</tr>
-			 		<%
-			 		}
-			 		%>
 			 		<tr>
 			 			<td>User Name</td>
 			 			<td><input name="username" ></td>
@@ -33,8 +23,12 @@
 			 			<td><input type="password" name="password" ></td>
 			 		</tr>
 			 		<tr>
+			 			<td>Full Name</td>
+			 			<td><input type="text" name="fullName" ></td>
+			 		</tr>
+			 		<tr>
 			 			<td colspan="2">
-			 				<button>Submit</button>
+			 				<button>Create</button>
 			 			</td>
 			 		</tr>
 			 	</table>
