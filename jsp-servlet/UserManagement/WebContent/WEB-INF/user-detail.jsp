@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%
-		String mode = (String) session.getAttribute("MODE");
+		String action = (String) request.getAttribute("action");
 	%>
 
 	<div class="container">
@@ -28,9 +28,10 @@
 			%>
 
 			<%
-				if (mode.equals("CREATE")) {
+				if (action.equals("CREATE")) {
 			%>
-			<form method="post">
+			<form action="<%=request.getContextPath() %>/detail" method="post">
+				<input type="hidden" name="action" value="CREATE" >
 				<table>
 					<tr>
 						<td>User Name</td>
@@ -59,7 +60,7 @@
 				} else {
 				Account account = (Account) request.getAttribute("ACCOUNT");
 			%>
-			<form method="post">
+			<form action="<%=request.getContextPath() %>/detail" method="post">
 				<input type="hidden" name="username" value="<%=account.getUsername() %>">
 				<table>
 					<tr>
@@ -80,8 +81,8 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<button name="btnAction" value="update" type="submit">Update</button>
-							<button name="btnAction" value="delete" type="submit">Delete</button>
+							<button name="action" value="UPDATE" type="submit">Update</button>
+							<button name="action" value="DELETE" type="submit">Delete</button>
 						</td>
 					</tr>
 				</table>

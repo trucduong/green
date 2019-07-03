@@ -32,15 +32,7 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Lấy thông tin user từ session
-		HttpSession session = request.getSession();
-		String currentUser = (String) session.getAttribute("current_user");
 		
-		// nếu chưa login thì tự động chuyển qua trang login
-		if (currentUser == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
-			return;
-		}
 		
 		// lấy danh sách Account từ DB
 		AccountDao accountDao = new AccountDao();

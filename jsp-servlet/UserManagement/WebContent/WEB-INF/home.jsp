@@ -9,6 +9,9 @@
 <title>Home page</title>
 </head>
 <body>
+	<form action="logout" method="get">
+		<button>Logout</button>
+	</form>
 	<h1>User List</h1>
 	
 <%
@@ -31,12 +34,13 @@ List<Account> accountList = (List<Account>) request.getAttribute("account_list")
 			<td><%=account.getEmail() %></td>
 			<td>
 				<form action="<%=request.getContextPath()%>/detail" method="get">
-					<input type="hidden" name="u" value="<%=account.getUsername()%>">
+					<input type="hidden" name="username" value="<%=account.getUsername()%>">
+					<input type="hidden" name="action" value="UPDATE">
 					<button type="submit">Update</button>
 				</form>
 				<form action="<%=request.getContextPath()%>/detail" method="post">
 					<input type="hidden" name="username" value="<%=account.getUsername()%>">
-					<input type="hidden" name="btnAction" value="delete">
+					<input type="hidden" name="action" value="DELETE">
 					<button type="submit">Delete</button>
 				</form>
 			</td>

@@ -1,12 +1,12 @@
 package com.green.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.green.dao.AccountDao;
 import com.green.entity.Account;
@@ -34,20 +34,17 @@ public class UserDetailServlet extends HttpServlet {
 			throws ServletException, IOException {
 		AccountDao accountDao = new AccountDao();
 		
-		HttpSession session = request.getSession();
-
-		// lay username được truyền qua từ trang home
-		// http://localhost:8080/UserManagement/detail?u=admin
-		String username = request.getParameter("u");
-		if (username != null) { // update
+		String action = (String) request.getParameter("action");
+		
+		if (action == null) {
+			action = "CREATE";
+		} else if (action.equals("UPDATE")) {
+			String username = request.getParameter("username");
 			Account account = accountDao.findByUsername(username);
 			request.setAttribute("ACCOUNT", account);
-			
-			session.setAttribute("MODE", "UPDATE");
-		} else { // create
-			session.setAttribute("MODE", "CREATE");
 		}
 
+		request.setAttribute("action", action);
 		request.getRequestDispatcher("/WEB-INF/user-detail.jsp").forward(request, response);
 	}
 
@@ -57,21 +54,22 @@ public class UserDetailServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String action = request.getParameter("action");
 		
-		HttpSession session = request.getSession();
-		String mode = (String) session.getAttribute("MODE");
-		
-		if ("CREATE".equals(mode)) {
+		if (action == null) {
+			// loi, quay ve trang index
+			request.getRequestDispatcher(request.getContextPath()).forward(request, response);
+		} else if (action.equals("CREATE")) {
 			create(request, response);
-			
+		} else if (action.equals("UPDATE")) {
+			update(request, response);
+		} else if (action.equals("DELETE")) {
+			delete(request, response);
 		} else {
-			String action = request.getParameter("btnAction");
-			if ("update".equals(action)) { // nhấn butotn Update
-				update(request, response);
-			} else { // nhấn button Delete
-				delete(request, response);
-			}
+			// loi, quay ve trang index
+			request.getRequestDispatcher(request.getContextPath()).forward(request, response);
 		}
+		
 	}
 	
 	private void create(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
