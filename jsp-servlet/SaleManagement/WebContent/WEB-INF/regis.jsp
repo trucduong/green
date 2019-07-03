@@ -44,7 +44,7 @@
                    <td><textarea name="address" rows="3"></textarea></td>
                </tr>
 	           </table>
-	            <button>Submit</button>
+	            <button type="submit">Submit</button>
 	        </form>
 	    </div>
         <a href="<%=request.getContextPath()%>">Back to Home page</a>
