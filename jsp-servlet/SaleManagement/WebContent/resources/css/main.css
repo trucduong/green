@@ -1,0 +1,15 @@
+header {
+	vertical-align: middle;
+    min-height: 50px;
+    border-bottom: solid;
+}
+
+footer {
+    vertical-align: middle;
+    min-height: 50px;
+    border-top: solid;
+}
+
+section {
+	min-height: 500px;
+}
