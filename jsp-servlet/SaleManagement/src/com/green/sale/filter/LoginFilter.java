@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 // Yêu cầu login đối với các request có path như bên dưới 
-@WebFilter(urlPatterns = {
-        "/sale/*",
-        "/category/*",
-        "/product/*",
-        "/profile/*"
-})
+//@WebFilter(urlPatterns = {
+//        "/sale/*",
+//        "/category/*",
+//        "/product/*",
+//        "/profile/*"
+//})
 public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -31,6 +31,7 @@ public class LoginFilter implements Filter {
         if (currentUser == null) {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             httpResponse.sendRedirect(htttpRequest.getContextPath());
+            return;
         }
         
         // thực hiện các filter tiếp theo

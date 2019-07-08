@@ -13,6 +13,7 @@ public class AccountDao {
 
     public Account findByEmail(String email) {
         // sinh viên tự thực hiện phần này
+        return null;
     }
     
     public boolean insert(Account account) {

@@ -13,3 +13,8 @@ footer {
 section {
 	min-height: 500px;
 }
+
+form {
+	display: inline-block;
+}
+
