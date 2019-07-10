@@ -14,12 +14,14 @@
 
     <section>
         <div>
-            <h1>Hình đại diện</h1>
+            <h2 class="section-header">Hình đại diện</h2>
             <div>
+            	
+            	<input type="file">
             </div>
         </div>
         <div>
-            <h1>Thông tin cá nhân</h1>
+            <h2 class="section-header">Thông tin cá nhân</h2>
             <div>
                 <form action="<%=request.getContextPath() %>/profile" method="post" >
 	               <table>

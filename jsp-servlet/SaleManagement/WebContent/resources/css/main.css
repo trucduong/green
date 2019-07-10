@@ -18,3 +18,7 @@ form {
 	display: inline-block;
 }
 
+.section-header {
+	border-bottom: 1px solid;
+}
+
