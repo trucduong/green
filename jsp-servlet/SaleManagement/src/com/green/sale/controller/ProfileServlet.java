@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.green.sale.dao.AccountDao;
 import com.green.sale.entity.Account;
 
-@WebServlet("/regis")
+@WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,7 +25,7 @@ public class ProfileServlet extends HttpServlet {
 	    
 	    // lấy thông tin user từ DB
 	    AccountDao accountDao = new AccountDao();
-	    Account account = accountDao.findByCode(currentUserCode);
+	    Account account = accountDao.find(currentUserCode);
 	    
 	    // gán thông tin user vào request attribute và hiển thị trên trang profile
 	    request.setAttribute("_account", account);
