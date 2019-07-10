@@ -31,7 +31,7 @@ public class EmailUtils {
             message.setFrom(new InternetAddress(ApplicationConfig.getConfig("mail.from")));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject(subject);
-            message.setText(htmlMessage);
+            message.setContent(htmlMessage, "text/html");
 
             Transport.send(message);
 

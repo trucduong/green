@@ -5,12 +5,34 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import com.green.sale.entity.Account;
 import com.green.sale.utils.ApplicationConfig;
 
 public class AccountDao {
 
+    public Account find(String code) {
+        return null;
+    }
+    
+    public List<Account> findAll() {
+        // học viên thực hiện phần này
+    }
+    
+    public boolean insert(Account account) {
+        // học viên thực hiện phần này
+    }
+    
+    public boolean update(String code, Account account) {
+        // học viên thực hiện phần này
+    }
+    
+    public boolean delete(String code) {
+        //học viên thực hiện phần này
+    }
+}   
+ 
     public Account findByEmail(String email) {
         // sinh viên tự thực hiện phần này
         return null;

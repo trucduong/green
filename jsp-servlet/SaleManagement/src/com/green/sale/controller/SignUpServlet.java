@@ -37,10 +37,12 @@ public class SignUpServlet extends HttpServlet {
 	    
 	    // kiểm tra thông tin đăng ký
 	    
-	    // Lưu thông tin vào db
+	    // Kiểm tra email đã tồn tại hay chưa
 	    
 	    // gửi email xác nhận
-	    // EmailUtils.send(to, subject, htmlMessage)
+        // EmailUtils.send(to, subject, htmlMessage)
+	    
+	    // Lưu thông tin vào db
 	    
 	    // quay về trang index
 	}
