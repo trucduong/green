@@ -1,4 +1,5 @@
 <%@page import="com.green.sale.entity.Category"%>
+<%@page import="com.green.sale.entity.Product"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,6 +12,7 @@
 </head>
 <body>
 <%
+List<Product> productList = (List<Product>) request.getAttribute("_productList");
 List<Category> categoryList = (List<Category>) request.getAttribute("_categoryList");
 %>
 
@@ -29,35 +31,61 @@ List<Category> categoryList = (List<Category>) request.getAttribute("_categoryLi
     
     <section>
         <div class="section-header">
-            <h2>Category List</h2>
+            <h2>Product List</h2>
         </div>
         <div>
-            <form action="<%=request.getContextPath() %>/category/detail" method="get">
-                <button name="action" value="create">Create</button>
+            <form action="<%=request.getContextPath() %>/product" method="get">
+                <select name="categoryCode">
+                    <%
+                    for(Category category : categoryList) {
+                    %>
+                    <option value="<%=category.getCode() %>"><%=category.getName() %></option>
+                    <%
+                    }
+                    %>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+            <form action="<%=request.getContextPath() %>/product/detail" method="get">
+                <button type="submit" name="action" value="create">Create</button>
             </form>
         </div>
         <div>
             <table>
                 <tr>
-                    <th>Code</th>
+                    <th>Image</th>
                     <th>Name</th>
+                    <th>Price</th>
+                    <th>Status</th>
                     <th>Description</th>
                     <th>Action</th>
                 </tr>
                 <%
-                for(Category category : categoryList) {
+                for(Product product : productList) {
                 %>
                 <tr>
-                    <td><%=category.getCode() %></td>
-                    <td><%=category.getName() %></td>
-                    <td><%=category.getDescription() %></td>
+                    <td><img src="<%=request.getContextPath() %>\product\image?code=<%=product.getCode() %>" title="Product Image"></td>
+                    <td><%=product.getName() %></td>
+                    <td><%=product.getPrice() %></td>
+                    <%
+                    if (product.isStatus()) {
+                    %>
+                        <td>ACTIVE</td>
+                    <%
+                    } else {
+                    %>
+                        <td>IN-ACTIVE</td>
+                    <%
+                    }
+                    %>
+                    <td><%=product.getDescription() %></td>
                     <td>
-                    <form action="<%=request.getContextPath() %>/category/detail" method="get">
-                        <input type="hidden" name="code" value="<%=category.getCode()%>">
+                    <form action="<%=request.getContextPath() %>/product/detail" method="get">
+                        <input type="hidden" name="code" value="<%=product.getCode()%>">
                         <button name="action" value="update">Update</button>
                     </form>
-                    <form action="<%=request.getContextPath() %>/category/detail" method="post">
-                        <input type="hidden" name="code" value="<%=category.getCode()%>">
+                    <form action="<%=request.getContextPath() %>/product/detail" method="post">
+                        <input type="hidden" name="code" value="<%=product.getCode()%>">
                         <button name="action" value="delete">Delete</button>
                     </form>
                     </td>
