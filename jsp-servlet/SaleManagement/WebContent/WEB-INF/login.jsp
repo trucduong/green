@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <div>Sale Management System</div>
+        <div class="header-title">Sale Management System</div>
     </header>
 
     <section>

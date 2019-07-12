@@ -7,40 +7,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-/**
- * Servlet implementation class SignInServlet
- */
 @WebServlet("/login")
 public class SignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SignInServlet() {
-        super();
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // Lấy thông tin đăng ký người dùng đã nhập từ request
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Lấy thông tin đăng ký người dùng đã nhập từ request
         
         // kiểm tra email và password khác rỗng
         
-        // kiểm tra email và password đúng với db
+        // kiểm tra email và password đúng với db (gọi phương thức findByEmail của class AccountDao)
         
-        // lưu thông tin đăng nhập vào session
-	    
+        // lưu thông tin user vào session với key là CURRENT_USER
+        //HttpSession session = request.getSession();
+        //session.setAttribute("CURRENT_USER", account);
+        
         // redirect qua trang sale
-	}
+    }
 }

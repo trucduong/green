@@ -1,10 +1,10 @@
 package com.green.sale.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,9 +56,7 @@ public class AccountDao {
 			st.setString(1, account.getEmail());
 			st.setString(2, account.getPassword());
 			st.setString(3, account.getFullName());
-
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-			st.setString(4, sdf.format(account.getBirthDate()));
+			st.setDate(4, new Date(account.getBirthDate().getTime()));
 			st.setString(5, account.getAddress());
 			st.setString(6, account.getGender().toString());
 			st.setString(7, account.getImage());

@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -18,105 +16,91 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.green.sale.entity.Account;
+import com.green.sale.utils.ApplicationConfig;
+
 /**
- * https://www.journaldev.com/1964/servlet-upload-file-download-example
  * https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload/1.4
  * https://mvnrepository.com/artifact/commons-io/commons-io/2.6
  *
  */
 @WebServlet("/profile/image")
 public class ProfileImageServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private static final String PROFILE_IMAGE_DIR = "D:\\TrucDT\\image\\profile";
-	
-	private ServletFileUpload uploader = null;
-	
-	@Override
-	public void init() throws ServletException{
-		File filesDir = new File(PROFILE_IMAGE_DIR);
-		if (!filesDir.exists()) {
-			filesDir.mkdirs();
-		}
-		
-		DiskFileItemFactory fileFactory = new DiskFileItemFactory();
-		fileFactory.setRepository(filesDir);
-		this.uploader = new ServletFileUpload(fileFactory);
-	}
+    private ServletFileUpload uploader;
+    private String PROFILE_IMAGE_DIR;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String fileName = request.getParameter("fileName");
-		// lấy thông tin user đang đăng nhập
-	    HttpSession session = request.getSession();
-	    String currentUserCode = (String) session.getAttribute("CURRENT_USER");
-		
-		
-		if (fileName == null || fileName.equals("")) {
-			throw new ServletException("File Name can't be null or empty");
-		}
-		File file = new File(request.getServletContext().getAttribute("FILES_DIR") + File.separator + fileName);
-		if (!file.exists()) {
-			throw new ServletException("File doesn't exists on server.");
-		}
-		System.out.println("File location on server::" + file.getAbsolutePath());
-		ServletContext ctx = getServletContext();
-		InputStream fis = new FileInputStream(file);
-		String mimeType = ctx.getMimeType(file.getAbsolutePath());
-		response.setContentType(mimeType != null ? mimeType : "application/octet-stream");
-		response.setContentLength((int) file.length());
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+    @Override
+    public void init() throws ServletException {
+        PROFILE_IMAGE_DIR = ApplicationConfig.getConfig("image.dir.profile");
+        File filesDir = new File(PROFILE_IMAGE_DIR);
+        if (!filesDir.exists()) {
+            filesDir.mkdirs();
+        }
 
-		ServletOutputStream os = response.getOutputStream();
-		byte[] bufferData = new byte[1024];
-		int read = 0;
-		while ((read = fis.read(bufferData)) != -1) {
-			os.write(bufferData, 0, read);
-		}
-		os.flush();
-		os.close();
-		fis.close();
-		System.out.println("File downloaded at client successfully");
-	}
+        FileItemFactory factory = new DiskFileItemFactory();
+        uploader = new ServletFileUpload(factory);
+    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		if (!ServletFileUpload.isMultipartContent(request)) {
-			throw new ServletException("Content type is not multipart/form-data");
-		}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // lấy thông tin user đang đăng nhập
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("CURRENT_USER");
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.write("<html><head></head><body>");
-		try {
-			List<FileItem> fileItemsList = uploader.parseRequest(request);
-			Iterator<FileItem> fileItemsIterator = fileItemsList.iterator();
-			while (fileItemsIterator.hasNext()) {
-				FileItem fileItem = fileItemsIterator.next();
-				System.out.println("FieldName=" + fileItem.getFieldName());
-				System.out.println("FileName=" + fileItem.getName());
-				System.out.println("ContentType=" + fileItem.getContentType());
-				System.out.println("Size in bytes=" + fileItem.getSize());
+        String fileName = PROFILE_IMAGE_DIR + File.separator + account.getCode();
 
-				File file = new File(
-						request.getServletContext().getAttribute("FILES_DIR") + File.separator + fileItem.getName());
-				System.out.println("Absolute Path at server=" + file.getAbsolutePath());
-				fileItem.write(file);
-				out.write("File " + fileItem.getName() + " uploaded successfully.");
-				out.write("<br>");
-				out.write("<a href=\"UploadDownloadFileServlet?fileName=" + fileItem.getName() + "\">Download "
-						+ fileItem.getName() + "</a>");
-			}
-		} catch (FileUploadException e) {
-			out.write("Exception in uploading file.");
-		} catch (Exception e) {
-			out.write("Exception in uploading file.");
-		}
-		out.write("</body></html>");
-	}
-	
+        ServletContext ctx = getServletContext();
+        File file = new File(fileName);
+        
+        // nếu không tồn tại thì lấy hình đại diện mặc định
+        if (!file.exists()) {
+            file = new File(ctx.getRealPath("resources/image/avatar.png"));
+        }
+
+        InputStream fis = new FileInputStream(file);
+        String mimeType = ctx.getMimeType(file.getAbsolutePath());
+        response.setContentType(mimeType != null ? mimeType : "application/octet-stream");
+        response.setContentLength((int) file.length());
+        response.setHeader("Content-Disposition", "inline");
+
+        ServletOutputStream os = response.getOutputStream();
+        byte[] bufferData = new byte[1024];
+        int read = 0;
+        while ((read = fis.read(bufferData)) != -1) {
+            os.write(bufferData, 0, read);
+        }
+        os.flush();
+        os.close();
+        fis.close();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("CURRENT_USER");
+
+        if (!ServletFileUpload.isMultipartContent(request)) {
+            throw new ServletException("Content type is not multipart/form-data");
+        }
+
+        try {
+            List<FileItem> fileItemsList = uploader.parseRequest(request);
+            FileItem fileItem = fileItemsList.get(0);
+            if (fileItem.getSize() > 0) {
+                File file = new File(PROFILE_IMAGE_DIR + File.separator + account.getCode());
+                file.delete();
+                fileItem.write(file);   
+            }
+        } catch (Exception e) {
+            throw new ServletException("Error to upload file", e);
+        }
+        
+        response.sendRedirect(request.getContextPath() + "/profile");
+    }
 }

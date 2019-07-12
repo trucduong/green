@@ -18,6 +18,17 @@ form {
 	display: inline-block;
 }
 
+.header-title {
+	display: inline-block;
+	font-size: 30px;
+	margin: 5px;
+}
+
+.header-btn-group {
+	display: inline-block;
+	height: 100%;
+}
+
 .section-header {
 	border-bottom: 1px solid;
 }

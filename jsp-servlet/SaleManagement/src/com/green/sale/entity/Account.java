@@ -9,7 +9,7 @@ public class Account {
 	private String fullName;
 	private Date birthDate;
 	private String address;
-	private Character gender;
+	private String gender;
 	private String image;
 
 	public int getCode() {
@@ -60,13 +60,13 @@ public class Account {
 		this.address = address;
 	}
 
-	public Character getGender() {
-		return gender;
-	}
-
-	public void setGender(Character gender) {
-		this.gender = gender;
-	}
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    
+    public String getGender() {
+        return gender;
+    }
 
 	public String getImage() {
 		return image;

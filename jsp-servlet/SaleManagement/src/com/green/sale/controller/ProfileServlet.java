@@ -1,6 +1,7 @@
 package com.green.sale.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.green.sale.dao.AccountDao;
 import com.green.sale.entity.Account;
 
 @WebServlet("/profile")
@@ -19,14 +19,15 @@ public class ProfileServlet extends HttpServlet {
 	 * Xử lý hiển thị trang profile
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// lấy thông tin user đang đăng nhập
+
+        Account a = new Account();
+        a.setCode(123);
+        request.getSession().setAttribute("CURRENT_USER", a);
+	    
+	    // lấy thông tin user đang đăng nhập
 	    HttpSession session = request.getSession();
-	    String currentUserCode = (String) session.getAttribute("CURRENT_USER");
-	    
-	    // lấy thông tin user từ DB
-	    AccountDao accountDao = new AccountDao();
-	    Account account = accountDao.find(currentUserCode);
-	    
+	    Account account = (Account) session.getAttribute("CURRENT_USER");
+
 	    // gán thông tin user vào request attribute và hiển thị trên trang profile
 	    request.setAttribute("_account", account);
 	    request.getRequestDispatcher("WEB-INF/profile.jsp").forward(request, response);
@@ -44,8 +45,9 @@ public class ProfileServlet extends HttpServlet {
 	    
 	    // gọi phương thức update của class AccountDao để lưu thông tin vào db
 	    
+	    // Cập nhật thông tin user trong session (CURRENT_USER)
+	    
 	    // hiển thị trang profile với thông tin mới nhất được lấy từ DB
 	    doGet(request, response);
 	}
-
 }

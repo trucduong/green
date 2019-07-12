@@ -9,14 +9,15 @@
 </head>
 <body>
     <header>
-        <div style="display: inline-block;">Sale Management System</div>
+        <div class="header-title">Sale Management System</div>
         <div style="display: inline-block; float: right">
-            <form action="<%=request.getContextPath()%>\profile" action="get">
-                <button type="submit">Profile</button>
-            </form>
-            <form action="<%=request.getContextPath()%>\profile" action="get">
-                <button>Logout</button>
-            </form>
+            <div class="header-btn-group">
+            <a href="<%=request.getContextPath()%>\logout">Logout</a>
+                <a href="<%=request.getContextPath()%>\logout">Logout</a>
+            </div>
+            <div class="header-btn-group">
+                <img src="<%=request.getContextPath() %>/profile/image" alt="Avatar" width="40" height="40">
+            </div>
         </div>
     </header>
     

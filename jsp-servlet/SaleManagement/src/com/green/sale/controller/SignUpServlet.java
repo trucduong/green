@@ -8,43 +8,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-/**
- * Servlet implementation class SignUpServlet
- */
 @WebServlet("/regis")
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SignUpServlet() {
-        super();
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("WEB-INF/regis.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    // Lấy thông tin đăng ký người dùng đã nhập từ request
 	    
 	    // kiểm tra thông tin đăng ký
 	    
-	    // Kiểm tra email đã tồn tại hay chưa
+	    // Kiểm tra email đã tồn tại hay chưa (gọi phương thức isExist của class AccountDao)
 	    
-	    // gửi email xác nhận
+	    // Khởi tạo giá trị ngẩu nhiên cho mật khẩu
+	    
+	    // gửi email xác nhận (mật khẩu được gửi kèm trong nội dung email)
         // EmailUtils.send(to, subject, htmlMessage)
 	    
 	    // Lưu thông tin vào db
 	    
 	    // quay về trang index
 	}
-
 }
