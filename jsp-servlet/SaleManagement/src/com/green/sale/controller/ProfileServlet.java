@@ -18,12 +18,7 @@ public class ProfileServlet extends HttpServlet {
 	/**
 	 * Xử lý hiển thị trang profile
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        Account a = new Account();
-        a.setCode(123);
-        request.getSession().setAttribute("CURRENT_USER", a);
-	    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	    
 	    // lấy thông tin user đang đăng nhập
 	    HttpSession session = request.getSession();
 	    Account account = (Account) session.getAttribute("CURRENT_USER");
