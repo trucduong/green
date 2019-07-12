@@ -12,6 +12,8 @@
         <div class="header-title">Sale Management System</div>
         <div style="display: inline-block; float: right">
             <div class="header-btn-group">
+            	<a href="<%=request.getContextPath()%>\category">Category</a>
+            	<a href="<%=request.getContextPath()%>\product">Product</a>
                 <a href="<%=request.getContextPath()%>\profile">Profile</a>
                 <a href="<%=request.getContextPath()%>\logout">Logout</a>
             </div>
