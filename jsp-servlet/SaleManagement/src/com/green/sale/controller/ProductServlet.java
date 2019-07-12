@@ -28,6 +28,7 @@ public class ProductServlet extends HttpServlet {
 	    List<Category> categoryList = categoryDao.findAll();
         request.setAttribute("_categoryList", categoryList);
 	    
+        // Tìm danh sách product theo category
 	    ProductDao productDao = new ProductDao();
 	    List<Product> productList;
 	    
@@ -38,7 +39,7 @@ public class ProductServlet extends HttpServlet {
 	        productList = productDao.findByCategory(categoryCode);
 	    }
 	    
-	    // Gán danh sách category vào request attribute
+	    // Gán danh sách product vào request attribute
 	    request.setAttribute("_productList", productList);
 
 	    request.getRequestDispatcher("WEB-INF/product.jsp").forward(request, response);
