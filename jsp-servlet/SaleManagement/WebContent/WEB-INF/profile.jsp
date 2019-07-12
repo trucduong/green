@@ -11,7 +11,6 @@
         <div class="header-title">Sale Management System</div>
         <div style="display: inline-block; float: right">
             <div class="header-btn-group">
-            <a href="<%=request.getContextPath()%>\logout">Logout</a>
                 <a href="<%=request.getContextPath()%>\logout">Logout</a>
             </div>
             <div class="header-btn-group">
