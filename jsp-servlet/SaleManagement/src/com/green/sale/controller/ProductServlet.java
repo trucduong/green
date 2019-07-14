@@ -36,7 +36,7 @@ public class ProductServlet extends HttpServlet {
 	    if (categoryCode == null || categoryCode.isEmpty()) {
 	        productList = productDao.findAll();
 	    } else {
-	        productList = productDao.findByCategory(categoryCode);
+	        productList = productDao.findByCategory(Integer.parseInt(categoryCode));
 	    }
 	    
 	    // Gán danh sách product vào request attribute

@@ -29,36 +29,7 @@ CREATE TABLE product (
     description NVARCHAR(1000)
 );
 
-CREATE TABLE cart (
-    code INT IDENTITY(1,1) PRIMARY KEY,
-    account_code INT NOT NULL,
-	total BIGINT NOT NULL,
-	created_date DATETIME NOT NULL
-);
-
-CREATE TABLE cart_detail (
-    code INT IDENTITY(1,1) PRIMARY KEY,
-	cart_code INT NOT NULL,
-	product_code INT NOT NULL,
-	quantity INT NOT NULL,
-	price BIGINT NOT NULL,
-	total BIGINT NOT NULL
-);
-
 
 ALTER TABLE product
 ADD CONSTRAINT fk_product_category
 FOREIGN KEY (category_code) REFERENCES category(code);
-
-ALTER TABLE cart
-ADD CONSTRAINT fk_cart_account
-FOREIGN KEY (account_code) REFERENCES account(code);
-
-ALTER TABLE cart_detail
-ADD CONSTRAINT fk_cartdetail_cart
-FOREIGN KEY (cart_code) REFERENCES cart(code);
-
-ALTER TABLE cart_detail
-ADD CONSTRAINT fk_cartdetail_product
-FOREIGN KEY (product_code) REFERENCES product(code);
-

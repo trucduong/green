@@ -19,7 +19,7 @@ public class CategoryDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    
 	    String action = request.getParameter("action");
-	    String code = request.getParameter("code");
+	    String codeStr = request.getParameter("code");
 	    
 	    if (action == null || action.isEmpty()) {
 	        response.sendRedirect(request.getContextPath() + "/category");
@@ -28,11 +28,12 @@ public class CategoryDetailServlet extends HttpServlet {
 	    
 	    switch (action) {
             case "update":
-                if(code == null || code.isEmpty()) {
+                if(codeStr == null || codeStr.isEmpty()) {
                     response.sendRedirect(request.getContextPath() + "/category");
                     break;
                 }
                 
+                int code = Integer.parseInt(codeStr);
                 CategoryDao categoryDao = new CategoryDao();
                 Category category = categoryDao.find(code);
                 if (category == null) {
@@ -119,7 +120,7 @@ public class CategoryDetailServlet extends HttpServlet {
 	    
 	    // Xóa category theo code
 	    CategoryDao categoryDao = new CategoryDao();
-	    categoryDao.delete(code);
+	    categoryDao.delete(Integer.parseInt(code));
 	    
 	    // chuyển về trang category list
 	    response.sendRedirect(request.getContextPath() + "/category");

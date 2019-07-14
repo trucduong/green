@@ -64,7 +64,7 @@ public class ProductDetailServlet extends HttpServlet {
                 }
                 
                 ProductDao productDao = new ProductDao();
-                Product product = productDao.find(code);
+                Product product = productDao.find(Integer.parseInt(code));
                 if (product == null) {
                     response.sendRedirect(request.getContextPath() + "/product");
                     break;
@@ -153,7 +153,7 @@ public class ProductDetailServlet extends HttpServlet {
 	    
 	    // Xóa product theo code
 	    ProductDao productDao = new ProductDao();
-	    productDao.delete(code);
+	    productDao.delete(Integer.parseInt(code));
 	    
 	    // chuyển về trang product list
 	    response.sendRedirect(request.getContextPath() + "/product");

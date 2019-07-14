@@ -6,7 +6,7 @@ import java.util.List;
 import com.green.sale.entity.Category;
 
 public class CategoryDao {
-    public Category find(String code) {
+    public Category find(int code) {
         return null;
     }
 
@@ -24,14 +24,14 @@ public class CategoryDao {
         return result;
     }
 
-    public boolean update(String code, Category category) {
+    public boolean update(int code, Category category) {
         // học viên thực hiện phần này
         boolean result = false;
 
         return result;
     }
 
-    public boolean delete(String code) {
+    public boolean delete(int code) {
         // học viên thực hiện phần này
         boolean result = false;
 

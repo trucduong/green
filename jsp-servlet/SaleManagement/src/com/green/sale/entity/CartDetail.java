@@ -1,59 +1,49 @@
 package com.green.sale.entity;
 
 public class CartDetail {
-	private int code;
-	private int cartCode;
-	private int productCode;
-	private int quantity;
-	private long price;
-	private long total;
+    private int productCode;
+    private String productName;
+    private int quantity;
+    private long price;
+    private long total;
 
-	public int getCode() {
-		return code;
-	}
+    public int getProductCode() {
+        return productCode;
+    }
 
-	public void setCode(int code) {
-		this.code = code;
-	}
+    public void setProductCode(int productCode) {
+        this.productCode = productCode;
+    }
 
-	public int getCartCode() {
-		return cartCode;
-	}
+    public String getProductName() {
+        return productName;
+    }
 
-	public void setCartCode(int cartCode) {
-		this.cartCode = cartCode;
-	}
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-	public int getProductCode() {
-		return productCode;
-	}
+    public int getQuantity() {
+        return quantity;
+    }
 
-	public void setProductCode(int productCode) {
-		this.productCode = productCode;
-	}
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public long getPrice() {
+        return price;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
+    public void setPrice(long price) {
+        this.price = price;
+    }
 
-	public long getPrice() {
-		return price;
-	}
+    public long getTotal() {
+        return total;
+    }
 
-	public void setPrice(long price) {
-		this.price = price;
-	}
-
-	public long getTotal() {
-		return total;
-	}
-
-	public void setTotal(long total) {
-		this.total = total;
-	}
-
+    public void setTotal(long total) {
+        this.total = total;
+    }
 }

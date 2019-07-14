@@ -13,7 +13,7 @@ import com.green.sale.utils.ApplicationConfig;
 
 public class AccountDao {
 
-	public Account find(String code) {
+	public Account find(int code) {
 		return null;
 	}
 
@@ -24,14 +24,14 @@ public class AccountDao {
 		return list;
 	}
 
-	public boolean update(String code, Account account) {
+	public boolean update(int code, Account account) {
 		// học viên thực hiện phần này
 		boolean result = false;
 
 		return result;
 	}
 
-	public boolean delete(String code) {
+	public boolean delete(int code) {
 		// học viên thực hiện phần này
 		boolean result = false;
 
