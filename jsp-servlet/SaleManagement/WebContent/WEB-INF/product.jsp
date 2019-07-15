@@ -67,17 +67,7 @@ List<Category> categoryList = (List<Category>) request.getAttribute("_categoryLi
                     <td><img src="<%=request.getContextPath() %>\product\image?code=<%=product.getCode() %>" title="Product Image"></td>
                     <td><%=product.getName() %></td>
                     <td><%=product.getPrice() %></td>
-                    <%
-                    if (product.isStatus()) {
-                    %>
-                        <td>ACTIVE</td>
-                    <%
-                    } else {
-                    %>
-                        <td>IN-ACTIVE</td>
-                    <%
-                    }
-                    %>
+                    <td><%=product.getStatus() %></td>
                     <td><%=product.getDescription() %></td>
                     <td>
                     <form action="<%=request.getContextPath() %>/product/detail" method="get">

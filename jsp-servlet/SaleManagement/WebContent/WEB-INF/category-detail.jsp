@@ -30,6 +30,7 @@
         <div>
             <form action="<%=request.getContextPath()%>/category/detail" method="post">
                 <input type="hidden" name="action" value="${action}">
+                <input type="hidden" name="code" value="${_category.code}">
                 <table>
                     <%
                     if ("update".equals(request.getAttribute("action"))) {
@@ -37,7 +38,7 @@
                     <tr>
                         <td>Code</td>
                         <td>
-                            <input name="code" value="${_category.code}" disabled="disabled">
+                            <input value="${_category.code}" disabled="disabled">
                         </td>
                     </tr>
                     <%

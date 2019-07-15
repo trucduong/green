@@ -43,13 +43,13 @@ public class CategoryDetailServlet extends HttpServlet {
                 
                 request.setAttribute("_category", category);
                 request.setAttribute("action", "update");
-                request.getRequestDispatcher("WEB-INF/category-detail.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/category-detail.jsp").forward(request, response);
                 break;
 
             case "create":
                 request.setAttribute("_category", new Category());
                 request.setAttribute("action", action);
-                request.getRequestDispatcher("WEB-INF/category-detail.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/category-detail.jsp").forward(request, response);
                 break;
                 
             default:

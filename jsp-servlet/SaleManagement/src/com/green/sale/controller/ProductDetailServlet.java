@@ -72,13 +72,13 @@ public class ProductDetailServlet extends HttpServlet {
                 
                 request.setAttribute("_product", product);
                 request.setAttribute("action", "update");
-                request.getRequestDispatcher("WEB-INF/product-detail.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/product-detail.jsp").forward(request, response);
                 break;
 
             case "create":
                 request.setAttribute("_product", new Product());
                 request.setAttribute("action", action);
-                request.getRequestDispatcher("WEB-INF/product-detail.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/product-detail.jsp").forward(request, response);
                 break;
                 
             default:

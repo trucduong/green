@@ -38,6 +38,7 @@ List<Category> categoryList = (List<Category>) request.getAttribute("_categoryLi
             </div>
             <form action="<%=request.getContextPath()%>/product/detail" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="action" value="${action}">
+                <input type="hidden" name="code" value="${_product.code}">
                 <table>
                     <%
                     if ("update".equals(request.getAttribute("action"))) {
@@ -45,7 +46,7 @@ List<Category> categoryList = (List<Category>) request.getAttribute("_categoryLi
                     <tr>
                         <td>Code</td>
                         <td>
-                            <input name="code" value="${_product.code}" disabled="disabled">
+                            <input value="${_product.code}" disabled="disabled">
                         </td>
                     </tr>
                     <%
