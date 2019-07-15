@@ -13,17 +13,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import com.green.sale.utils.ApplicationConfig;
 
 @WebServlet("/product/image")
 public class ProductImageServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    private ServletFileUpload uploader;
     private String PRODUCT_IMAGE_DIR;
 
     @Override
     public void init() throws ServletException {
         PRODUCT_IMAGE_DIR = ApplicationConfig.getConfig("image.dir.product");
+        
+        File filesDir = new File(PRODUCT_IMAGE_DIR);
+        if (!filesDir.exists()) {
+            filesDir.mkdirs();
+        }
+
+        FileItemFactory factory = new DiskFileItemFactory();
+        uploader = new ServletFileUpload(factory);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -36,7 +36,7 @@ List<Category> categoryList = (List<Category>) request.getAttribute("_categoryLi
             <div style="display: inline-block;">
                 <img alt="Product Image" src="<%=request.getContextPath()%>/product/image?code=${_product.code}">
             </div>
-            <form action="<%=request.getContextPath()%>/product/detail" method="post" enctype="multipart/form-data">
+            <form action="<%=request.getContextPath()%>/product/detail" method="post">
                 <input type="hidden" name="action" value="${action}">
                 <input type="hidden" name="code" value="${_product.code}">
                 <table>
@@ -65,12 +65,6 @@ List<Category> categoryList = (List<Category>) request.getAttribute("_categoryLi
                                 <option value="true" selected="${_product.status}">ACTIVE</option>
                                 <option value="false" selected="${not _product.status}">IN-ACTIVE</option>
                             </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Image</td>
-                        <td>
-                            <input type="file" name="image" size="1">
                         </td>
                     </tr>
                     <tr>
