@@ -2,8 +2,9 @@
 example/.idea
 .classpath
 .project
-*/.settings
-.settings/**
-.settings/*
-*/target
-*/bin
+/.settings
+**/.settings
+/target
+**/target
+**/bin
+**/bin
