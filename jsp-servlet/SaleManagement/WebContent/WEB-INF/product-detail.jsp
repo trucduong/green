@@ -62,8 +62,8 @@ List<Category> categoryList = (List<Category>) request.getAttribute("_categoryLi
                         <td>Status</td>
                         <td>
                             <select name="status">
-                                <option value="true" selected="${_product.status}">ACTIVE</option>
-                                <option value="false" selected="${not _product.status}">IN-ACTIVE</option>
+                                <option value="true" ${_product.status?'selected':''}>ACTIVE</option>
+                                <option value="false" ${not _product.status?'selected':''}>IN-ACTIVE</option>
                             </select>
                         </td>
                     </tr>
@@ -80,7 +80,7 @@ List<Category> categoryList = (List<Category>) request.getAttribute("_categoryLi
                             <%
                             for(Category category : categoryList) {
                             %>
-                              <option value="<%=category.getCode() %>" selected="<%=(product.getCategoryCode() == category.getCode()) %>"><%=category.getName() %></option>
+                              <option value="<%=category.getCode() %>" <%=(product.getCategoryCode() == category.getCode()?"selected":"") %>><%=category.getName() %></option>
                             <%
                             }
                             %>

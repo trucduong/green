@@ -53,8 +53,8 @@
                        <td>Gender</td>
                        <td>
                         <select name="gender">
-                            <option value="M" selected="${_account.gender eq 'M'}">Male</option>
-                            <option value="F" selected="${_account.gender eq 'F'}">FeMale</option>
+                            <option value="M" ${_account.gender eq 'M' ? 'selected': ''}>Male</option>
+                            <option value="F" ${_account.gender eq 'F' ? 'selected': ''}>FeMale</option>
                         </select>
                        </td>
                    </tr>
