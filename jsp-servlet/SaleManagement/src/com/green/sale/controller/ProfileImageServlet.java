@@ -2,9 +2,9 @@ package com.green.sale.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,11 +14,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.IOUtils;
 
 import com.green.sale.entity.Account;
 import com.green.sale.utils.ApplicationConfig;
@@ -32,7 +31,6 @@ import com.green.sale.utils.ApplicationConfig;
 public class ProfileImageServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private ServletFileUpload uploader;
     private String PROFILE_IMAGE_DIR;
 
     @Override
@@ -43,8 +41,6 @@ public class ProfileImageServlet extends HttpServlet {
             filesDir.mkdirs();
         }
 
-        FileItemFactory factory = new DiskFileItemFactory();
-        uploader = new ServletFileUpload(factory);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -90,13 +86,11 @@ public class ProfileImageServlet extends HttpServlet {
         }
 
         try {
-            List<FileItem> fileItemsList = uploader.parseRequest(request);
-            FileItem fileItem = fileItemsList.get(0);
-            if (fileItem.getSize() > 0) {
-                File file = new File(PROFILE_IMAGE_DIR + File.separator + account.getCode());
-                file.delete();
-                fileItem.write(file);   
-            }
+        	Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+			InputStream filecontent = filePart.getInputStream();
+			File file = new File(PROFILE_IMAGE_DIR + File.separator + account.getCode());
+			file.delete();
+			IOUtils.copy(filecontent, new FileOutputStream(file));
         } catch (Exception e) {
             throw new ServletException("Error to upload file", e);
         }
