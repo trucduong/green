@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.green.entity.Account;
+
 @WebFilter(urlPatterns={
 		"/",
 		"/detail"
@@ -26,7 +28,7 @@ public class LoginFilter implements Filter {
 		
 		// Lấy thông tin user từ session
 		HttpSession session = request.getSession();
-		String currentUser = (String) session.getAttribute("current_user");
+		Account currentUser = (Account) session.getAttribute("current_user");
 		
 		// nếu chưa login thì tự động chuyển qua trang login
 		if (currentUser == null) {

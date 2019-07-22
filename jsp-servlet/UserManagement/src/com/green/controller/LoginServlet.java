@@ -78,7 +78,7 @@ public class LoginServlet extends HttpServlet {
 		
 		// luu thong tin account vao session
 		HttpSession session = request.getSession();
-		session.setAttribute("current_user", username);
+		session.setAttribute("current_user", account);
 		
 		// quay ve trang Index va hien thi danh sach account.
 		response.sendRedirect(request.getContextPath() + "/");
