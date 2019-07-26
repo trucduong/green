@@ -21,6 +21,7 @@ public class HibernateUtils {
 			sessionFactory = metadata.getSessionFactoryBuilder().build();
 
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error("Can't init session factory", e);
 		}
 	}
