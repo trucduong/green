@@ -20,7 +20,7 @@ public class EmployeeDao {
 		return result;
 	}
 	
-	public Employee find(String id) {
+	public Employee find(int id) {
 		SessionFactory factory = HibernateUtils.getSessionFactory();
 		Session session = factory.openSession();
 
@@ -71,7 +71,7 @@ public class EmployeeDao {
 		return result;
 	}
 
-	public boolean delete(String id) {
+	public boolean delete(int id) {
 		boolean result = true;
 		try {
 

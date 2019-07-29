@@ -6,7 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Hibernate Example</title>
+<style type="text/css">
+
+	form {
+		display: inline-block;;
+	}
+
+</style>
 </head>
 <body>
 <h1>Employee List</h1>
@@ -14,7 +21,11 @@
 <%
 	List<Employee> employeeList = (List<Employee>) request.getAttribute("_employee_list");
 %>
-<button>Create</button>
+<div>
+	<form action="<%=request.getContextPath() %>/employee/detail" method="get">
+	    <button name="action" value="create">Create</button>
+	</form>
+	</div>
 <table>
 	<tr>
 		<th>Id</th>
@@ -32,8 +43,14 @@
 		<td><%=employee.getLastName() %></td>
 		<td><%=employee.getSalary() %></td>
 		<td>
-			<button>Update</button>
-			<button>Delete</button>
+			<form action="<%=request.getContextPath() %>/employee/detail" method="get">
+                <input type="hidden" name="id" value="<%=employee.getId() %>">
+                <button name="action" value="update">Update</button>
+            </form>
+            <form action="<%=request.getContextPath() %>/employee/detail" method="post">
+                <input type="hidden" name="id" value="<%=employee.getId() %>">
+                <button name="action" value="delete">Delete</button>
+            </form>
 		</td>
 	</tr>
 	<%
