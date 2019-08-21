@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.green</groupId>
-	<artifactId>user-management-spring-hibernate</artifactId>
+	<artifactId>user-management-springmvc</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>user-management-spring-hibernate Maven Webapp</name>
@@ -39,6 +39,12 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<version>7.2.2.jre8</version>
@@ -61,7 +67,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
+		 <!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
@@ -70,6 +76,6 @@
 
 	</dependencies>
 	<build>
-		<finalName>user-management-spring-hibernate</finalName>
+		<finalName>user-management-springmvc</finalName>
 	</build>
 </project>
