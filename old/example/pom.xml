@@ -20,7 +20,7 @@
 		<jackson.version>2.5.4</jackson.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<org.aspectj-version>1.7.4</org.aspectj-version>
-		<mysql.connector.version>5.1.31</mysql.connector.version>
+		<mysql.connector.version>8.0.16</mysql.connector.version>
 	</properties>
 	<dependencies>
 		<!-- Jackson -->
