@@ -12,7 +12,7 @@
 		<jdk.version>1.7</jdk.version>
 		<!-- Spring -->
 		<spring.version>4.2.5.RELEASE</spring.version>
-        <springsecurity.version>4.0.4.RELEASE</springsecurity.version>
+        <springsecurity.version>5.2.10.RELEASE</springsecurity.version>
 		<!-- Web -->
 		<jstl.version>1.2</jstl.version>
 		<servlet.version>3.1.0</servlet.version>
